@@ -1,6 +1,7 @@
 from django.http import JsonResponse, Http404
 from django.views.decorators.http import require_http_methods
 import json
+import requests
 
 from common.json import ModelEncoder
 from .models import Salesperson, Customer, AutomobileVO, Sale
@@ -136,6 +137,15 @@ def api_list_sales(request):
         # update AutoVO to sold
         autoVO.sold = True
         autoVO.save()
+
+        #update Automobile to sold
+        json_data = json.dumps({"sold":True})
+        AutoUrl = f'http://project-beta-inventory-api-1:8000/api/automobiles/{auto_vin}/'
+        response = requests.put(AutoUrl,
+                                data=json_data,
+                                headers={'Content-Type': 'application/json'})
+        if response.status_code != 200:
+            print("auto request failed", response.status_code)
 
         return JsonResponse(
             sale,
