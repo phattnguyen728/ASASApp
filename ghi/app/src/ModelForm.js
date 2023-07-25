@@ -29,7 +29,7 @@ export default function ModelForm({ getModels}) {
             picture_url:picture_url,
             manufacturer_id: manufacturer,
         };
-        console.log("data", data)
+
 
         const modelUrl = 'http://localhost:8100/api/models/'
         const fetchConfig = {
@@ -41,14 +41,13 @@ export default function ModelForm({ getModels}) {
         };
         const response = await fetch(modelUrl, fetchConfig)
         if (response.ok) {
-            const newModel = await response.json()
-            console.log(newModel, "NEW MODEL");
             setName('');
             setPictureUrl('');
             setManufacturer('');
 
-            // Refreshes model list
-            getModels('');
+            // Refreshes model list and redirects
+            getModels();
+            window.location.href = 'http://localhost:3000/models';
         }
     }
 

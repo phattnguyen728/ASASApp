@@ -9,7 +9,6 @@ export default function ModelsList() {
 
     if (response.ok) {
       const data = await response.json();
-      console.log({ "data": data })
       setModels(data.models);
     }
   };

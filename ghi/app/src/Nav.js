@@ -34,6 +34,12 @@ function Nav() {
             <li className='nav-item'>
               <NavLink className="nav-link active" to="/appointments/create">Create an Appointment</NavLink>
             </li>
+            <li className='nav-item'>
+              <NavLink className="nav-link active" to="/automobiles">Automobiles</NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink className="nav-link active" to="/automobiles/create">Create an Automobile</NavLink>
+            </li>
           </ul>
         </div>
       </div>
