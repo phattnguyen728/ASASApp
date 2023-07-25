@@ -83,10 +83,10 @@ def api_appointments(request):
                     {"message": 'Does not match any technicians'},
                     status=400
                 )
-            # vin = content["vin"]
-            vin = content.get("vin")
-            # if AutomobileVO.objects.filter(vin=vin).count() == 1:
-            if AutomobileVO.objects.filter(vin=vin, sold=True).exists():
+            vin = content["vin"]
+            # vin = content.get("vin")
+            if AutomobileVO.objects.filter(vin=vin).count() == 1:
+            # if AutomobileVO.objects.filter(vin=vin, sold=True).exists():
                 content["is_vip"] = True
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
