@@ -23,9 +23,6 @@ def poll(repeat=True):
                 AutomobileVO.objects.update_or_create(
                     defaults ={"vin": auto["vin"], "sold": auto["sold"]}
                 )
-            print(auto, "success")
-
-
         except Exception as e:
             print(e, file=sys.stderr)
 
