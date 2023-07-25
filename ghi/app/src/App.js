@@ -7,8 +7,24 @@ import TechnicianForm from './TechnicianForm';
 import ModelForm from './ModelForm';
 import ModelsList from './ModelsList';
 import Nav from './Nav';
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [models, setModels] = useState([]);
+
+  async function getModels() {
+    const modelUrl = 'http://localhost:8100/api/models/'
+    const response = await fetch(modelUrl)
+    if (response.ok) {
+      const data = await response.json();
+      setModels(data.models)
+    }
+  }
+
+  useEffect(() => {
+    getModels();
+  }, [])
+
   return (
     <BrowserRouter>
       <Nav />
@@ -20,7 +36,7 @@ function App() {
           <Route path="/technicians" element={<TechniciansList />} />
           <Route path="/technicians/create" element={<TechnicianForm />} />
           <Route path="/models" element={<ModelsList />} />
-          <Route path="/models/create" element={<ModelForm />} />
+          <Route path="/models/create" element={<ModelForm getModels={getModels} />} />
         </Routes>
       </div>
     </BrowserRouter>
