@@ -3,7 +3,7 @@
 Team:
 
 * Person 1 - Which microservice?
-Sales Joana McPherson
+Sales Joanna McPherson
 * Person 2 - Which microservice?
 Service Phat Nguyen
 ## Design
