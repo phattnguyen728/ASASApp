@@ -50,7 +50,7 @@ export default function ManufacturerForm() {
                 className="form-control"
                 value={name}
               />
-              <label htmlFor="manufacturer">Manufacturer Name</label>
+              <label htmlFor="name">Manufacturer Name</label>
             </div>
             <button className="btn btn-primary">Create</button>
           </form>
