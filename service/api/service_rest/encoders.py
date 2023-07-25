@@ -24,8 +24,8 @@ class AppointmentEncoder(ModelEncoder):
         'vin',
         'customer',
         'is_vip',
-        # 'technician' #This needs to be commented out for list appt and for create to not show 400
+        'technician'
     ]
     encoders = {
-        "model": TechnicianEncoder(),
+        "technician": TechnicianEncoder(),
     }

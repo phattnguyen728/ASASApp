@@ -6,6 +6,8 @@ import TechniciansList from './TechniciansList';
 import TechnicianForm from './TechnicianForm';
 import ModelForm from './ModelForm';
 import ModelsList from './ModelsList';
+import AppointmentsList from './AppointmentsList';
+import AppointmentForm from './AppointmentForm';
 import Nav from './Nav';
 import React, { useEffect, useState } from "react";
 
@@ -37,6 +39,8 @@ function App() {
           <Route path="/technicians/create" element={<TechnicianForm />} />
           <Route path="/models" element={<ModelsList />} />
           <Route path="/models/create" element={<ModelForm getModels={getModels} />} />
+          <Route path="/appointments" element={<AppointmentsList />} />
+          <Route path="/appointments/create" element={<AppointmentForm />} />
         </Routes>
       </div>
     </BrowserRouter>
