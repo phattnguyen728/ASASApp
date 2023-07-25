@@ -27,6 +27,7 @@ export default function ModelsList() {
             <th>Manufacturer</th>
             <th>Picture</th>
           </tr>
+        </thead>
           <tbody>
             {models.map(model => {
               return (
@@ -40,9 +41,7 @@ export default function ModelsList() {
               )
             })}
           </tbody>
-        </thead>
       </table>
     </div>
   )
-
 }
