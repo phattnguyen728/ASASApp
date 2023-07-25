@@ -10,6 +10,8 @@ import AutomobilesList from './AutomobilesList';
 import AutomobileForm from './AutomobileForm';
 import SalespeopleList from './SalespeopleList';
 import SalespersonForm from './SalespersonForm';
+import CustomerForm from './CustomerForm';
+import CustomerList from './CustomerList';
 import AppointmentsList from './AppointmentsList';
 import AppointmentForm from './AppointmentForm';
 import Nav from './Nav';
@@ -19,6 +21,7 @@ function App() {
   const [models, setModels] = useState([]);
   const [automobiles, setAutomobiles] = useState([]);
   const [salespeople, setSalespeople] = useState([]);
+  const [customers, setCustomers] = useState([]);
 
   async function getModels() {
     const modelUrl = 'http://localhost:8100/api/models/'
@@ -46,11 +49,20 @@ function App() {
     }
   }
 
+  async function getCustomers() {
+    const customerUrl = 'http://localhost:8090/api/customers/'
+    const response = await fetch(customerUrl)
+    if (response.ok) {
+      const data = await response.json();
+      setCustomers(data.customers)
+    }
+  }
 
   useEffect(() => {
     getModels();
     getAutomobiles();
     getSalespeople();
+    getCustomers();
   }, []);
 
   return (
@@ -69,6 +81,8 @@ function App() {
           <Route path="/automobiles/create" element={<AutomobileForm getAutomobiles={getAutomobiles} />} />
           <Route path="/salespeople" element={<SalespeopleList salespeople={salespeople} />} />
           <Route path="/salespeople/create" element={<SalespersonForm getSalespeople={getSalespeople} />} />
+          <Route path="/customers" element={<CustomerList customers={customers} />} />
+          <Route path="/customers/create" element={<CustomerForm getCustomers={getCustomers} />} />
           <Route path="/appointments" element={<AppointmentsList />} />
           <Route path="/appointments/create" element={<AppointmentForm />} />
         </Routes>
