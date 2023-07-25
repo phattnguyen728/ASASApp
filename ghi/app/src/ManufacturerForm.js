@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from "react";
 export default function ManufacturerForm() {
   const [name, setName] = useState("");
-  const [isSuccessful, setIsSuccessful] = useState(false);
-  // If flash doesn't work I'll just remove it
-  useEffect(() => {
-    if (isSuccessful) {
-      const timer = setTimeout(() => {
-        setIsSuccessful(false);
-      }, 10000);
-      return () => clearTimeout(timer);
-    }
-  }, [isSuccessful]);
-
 
   function handleNameChange(event) {
     const value = event.target.value;
@@ -39,7 +28,6 @@ export default function ManufacturerForm() {
       const newManufacturer = await response.json();
       console.log(newManufacturer)
 
-      setIsSuccessful(true);
       setName("");
     }
   };
@@ -47,8 +35,7 @@ export default function ManufacturerForm() {
   return (
     <div className="row">
       <div className="offset-3 col-6">
-        {/* <div className="shadow p-4 mt-4"> */}
-        <div className={`shadow p-4 mt-4 ${isSuccessful ? 'flash-green' : ''}`}>
+        <div className="shadow p-4 mt-4">
           <h1>Create a new Manufacturer</h1>
           {/* <form id="create-manufacturer-form"> */}
           <form onSubmit={handleSubmit} id="create-manufacturer-form">
