@@ -108,7 +108,7 @@ class Tests(TransactionTestCase):
 
         response = client.post("/api/sales/", json.dumps({**body, "automobile": 999}), content_type='application/json')
         data = response.json()
-        self.assertTrue(response.status_code == 404 or response.status_code == 400, msg="Did not get a 404 OK for non-existent auto/")
+        self.assertEqual(response.status_code == 404 or response.status_code == 400, msg="Did not get a 404 OK for non-existent auto/")
 
         response = client.post("/api/sales/", json.dumps({**body, "salesperson": 999}), content_type='application/json')
         data = response.json()
