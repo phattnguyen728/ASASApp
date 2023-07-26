@@ -29,6 +29,7 @@ export default function ManufacturerForm() {
       console.log(newManufacturer)
 
       setName("");
+      window.location.href = 'http://localhost:3000/manufacturers/';
     }
   };
 
