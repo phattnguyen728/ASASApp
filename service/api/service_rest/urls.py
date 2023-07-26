@@ -24,11 +24,6 @@ urlpatterns = [
         api_appointments,
         name="api_appointments"
     ),
-    # path(
-    #     "appointments/<str:vin>/",
-    #     api_appointment,
-    #     name="api_appointment"
-    # ),
     path(
         "appointments/<int:id>/",
         api_appointment,
@@ -39,16 +34,6 @@ urlpatterns = [
         cancel_appointment,
         name="cancel_appointment"
     ),
-    # path(
-    #     "appointments/<str:vin>/cancel",
-    #     cancel_appointment,
-    #     name="cancel_appointment"
-    # ),
-    # path(
-    #     "appointments/<str:vin>/finish",
-    #     finish_appointment,
-    #     name="api_appointment"
-    # ),
     path(
         "appointments/<int:id>/finish",
         finish_appointment,

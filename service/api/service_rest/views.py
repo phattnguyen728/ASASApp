@@ -72,9 +72,7 @@ def api_appointments(request):
                     {"message": "Does not match any technicians"}, status=400
                 )
             vin = content["vin"]
-            # vin = content.get("vin")
             if AutomobileVO.objects.filter(vin=vin).count() == 1:
-                # if AutomobileVO.objects.filter(vin=vin, sold=True).exists():
                 content["is_vip"] = True
             appointment = Appointment.objects.create(**content)
             return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
@@ -86,7 +84,6 @@ def api_appointments(request):
 
 @require_http_methods(["DELETE", "GET"])
 def api_appointment(request, id):
-    # def api_appointment(request, vin):
     if request.method == "GET":
         appointment = Appointment.objects.filter(id=id)
         return JsonResponse(
@@ -94,13 +91,9 @@ def api_appointment(request, id):
         )
     else:
         try:
-            # appointment = Appointment.objects.get(vin=vin)
             appointment = Appointment.objects.get(id=id)
             appointment.delete()
             return JsonResponse(
-                # appointment,
-                # encoder=AppointmentEncoder,
-                # safe=False,
                 {"message": "Appointment has been deleted"},
                 status=200,
             )
@@ -112,17 +105,13 @@ def api_appointment(request, id):
 
 @require_http_methods(["PUT"])
 def cancel_appointment(request, id):
-    # def cancel_appointment(request, vin):
     appointment = Appointment.objects.get(id=id)
-    # appointment = Appointment.objects.get(vin=vin)
     appointment.is_cancelled()
     return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
 
 
 @require_http_methods(["PUT"])
 def finish_appointment(request, id):
-    # def finish_appointment(request, vin):
     appointment = Appointment.objects.get(id=id)
-    # appointment = Appointment.objects.get(vin=vin)
     appointment.is_finished()
     return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
