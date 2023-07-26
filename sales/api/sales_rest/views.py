@@ -119,7 +119,7 @@ def api_list_sales(request):
             # check car exists is unsold and set
             auto_vin = content["automobile"]
             autoVO = AutomobileVO.objects.get(vin=auto_vin)
-            if autoVO.sold == False:
+            if autoVO.sold is False:
                 content["automobile"] = autoVO
             # check salesperson exists and set
             salesperson_id = content["salesperson"]
