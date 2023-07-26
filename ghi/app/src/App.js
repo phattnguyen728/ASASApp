@@ -10,6 +10,8 @@ import AutomobilesList from './AutomobilesList';
 import AutomobileForm from './AutomobileForm';
 import SalespeopleList from './SalespeopleList';
 import SalespersonForm from './SalespersonForm';
+import SalesList from './SalesList';
+import SalesForm from './SalesForm';
 import CustomerForm from './CustomerForm';
 import CustomerList from './CustomerList';
 import AppointmentsList from './AppointmentsList';
@@ -21,6 +23,7 @@ function App() {
   const [models, setModels] = useState([]);
   const [automobiles, setAutomobiles] = useState([]);
   const [salespeople, setSalespeople] = useState([]);
+  const [sales, setSales] = useState([]);
   const [customers, setCustomers] = useState([]);
 
   async function getModels() {
@@ -49,6 +52,14 @@ function App() {
     }
   }
 
+  async function getSales() {
+    const salesUrl = 'http://localhost:8090/api/sales/'
+    const response = await fetch(salesUrl)
+    if (response.ok) {
+      const data = await response.json();
+      setSales(data.sales)
+    }
+  }
   async function getCustomers() {
     const customerUrl = 'http://localhost:8090/api/customers/'
     const response = await fetch(customerUrl)
@@ -62,6 +73,7 @@ function App() {
     getModels();
     getAutomobiles();
     getSalespeople();
+    getSales();
     getCustomers();
   }, []);
 
@@ -81,6 +93,8 @@ function App() {
           <Route path="/automobiles/create" element={<AutomobileForm getAutomobiles={getAutomobiles} />} />
           <Route path="/salespeople" element={<SalespeopleList salespeople={salespeople} />} />
           <Route path="/salespeople/create" element={<SalespersonForm getSalespeople={getSalespeople} />} />
+          <Route path="/sales" element={<SalesList sales={sales} />} />
+          <Route path="/sales/create" element={<SalesForm automobiles={automobiles} salespeople={salespeople} customers={customers} getSales={getSales} />} />
           <Route path="/customers" element={<CustomerList customers={customers} />} />
           <Route path="/customers/create" element={<CustomerForm getCustomers={getCustomers} />} />
           <Route path="/appointments" element={<AppointmentsList />} />

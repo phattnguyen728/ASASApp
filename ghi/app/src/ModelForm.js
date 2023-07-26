@@ -81,7 +81,7 @@ export default function ModelForm({ getModels}) {
                         <label htmlFor="picture_url">Picture url</label>
                     </div>
                         <div className="mb-3">
-                        <select value={manufacturer} onChange={handleChangeManufacturer} required name="manufacture" id="manufacturer" className="form-select">
+                        <select value={manufacturer} onChange={handleChangeManufacturer} required name="manufacturer" id="manufacturer" className="form-select">
                             <option value="">Choose a manufacturer</option>
                             {manufacturers.map(manufacturer => {
                             return (
