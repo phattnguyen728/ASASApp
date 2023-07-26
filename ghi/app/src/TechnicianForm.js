@@ -67,7 +67,7 @@ export default function TechnicianForm() {
               <label htmlFor="firstName">First Name</label>
             </div>
 
-            <div class="form-floating mb-3">
+            <div className="form-floating mb-3">
               <input
                 onChange={handleLastNameChange}
                 placeholder="Last name"

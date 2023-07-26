@@ -56,7 +56,7 @@ export default function AppointmentsList() {
         <tbody>
           {appointments.map(appointment => {
             return (
-              <tr key={appointment.vin}>
+              <tr key={appointment.id}>
                 <td> {appointment.vin} </td>
                 <td> {appointment.is_vip ? "Yes" : "No"} </td>
                 <td> {appointment.customer} </td>
