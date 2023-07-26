@@ -3,7 +3,6 @@ from django.views.decorators.http import require_http_methods
 import json
 from .encoders import (
     AppointmentEncoder,
-    AutomobileVOEncoder,
     TechnicianEncoder,
 )
 
@@ -27,8 +26,8 @@ def api_technicians(request):
                 encoder=TechnicianEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse({"message": "Could not create employee"})
+        except Exception:
+            response = JsonResponse({"message": "Could not create technician"})
             response.status_code = 400
             return response
 
@@ -76,7 +75,7 @@ def api_appointments(request):
                 content["is_vip"] = True
             appointment = Appointment.objects.create(**content)
             return JsonResponse(appointment, encoder=AppointmentEncoder, safe=False)
-        except:
+        except Exception:
             response = JsonResponse({"message": "Could not create appointment"})
             response.status_code = 400
             return response
