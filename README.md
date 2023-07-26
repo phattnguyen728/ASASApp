@@ -39,7 +39,7 @@ CarCar is made up of 3 microservices which interact with one another.
 ## Diagram
 ![Img](/images/CarCarDiagram.png)
 
-## SERVICE MICROSERVICE &&
+## SERVICE MICROSERVICE (PORT 8080:8000)
 
 For the Service microservice we have 3 models: Technician, AutomotbileVO, and Appointment. The Appointment model interacts with the technician and the automobile models. In order to generate an appointment, there has to be an existing technician. When generating a service appointment, it requires a VIN, Customer's information, Date and Time, a technician, and the reason for service. Once generated the VIN will be filters through the microservice poller verifying the VIN from the Inventory through the AutomobileVO value object to verify if the vehicle qualifies for VIP service. Through this microservice we are able to create, update, and keep track of appointments as well as keep track and manage the service history.
 
@@ -223,7 +223,7 @@ it will return a 404 not found
 	"Message": "Appointment does not exist"
 }
 
-## SALES MICROSERVICE
+## SALES MICROSERVICE  (PORT 8090:8000)
 
  On the backend, the sales microservice has 4 models: Salesperson, Customer, Sale and AutomobileVO. Sale is the model that interacts with the all other three models. A new sale must use an existing salesperson, customer and unsold automobile in order to be successfully created.
 
