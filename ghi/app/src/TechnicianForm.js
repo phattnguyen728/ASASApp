@@ -41,7 +41,7 @@ export default function TechnicianForm() {
     console.log(response)
     if (response.ok) {
       const newTechnician = await response.json();
-      console.log(newTechnician)
+      window.location.href = 'http://localhost:3000/technicians';
 
       setEmployeeId("");
       setFirstName("");

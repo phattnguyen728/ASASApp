@@ -74,7 +74,8 @@ export default function AppointmentForm() {
     console.log(response)
     if (response.ok) {
       const newAppointment = await response.json();
-      console.log(newAppointment)
+      window.location.href = 'http://localhost:3000/appointments/';
+
 
       setVin("");
       setCustomer("");
