@@ -9,7 +9,6 @@ export default function TechniciansList() {
 
     if (response.ok) {
       const data = await response.json();
-      console.log({ "data": data })
       setTechnicians(data.technicians);
     }
   };

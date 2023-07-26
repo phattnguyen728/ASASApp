@@ -38,7 +38,6 @@ export default function TechnicianForm() {
     };
 
     const response = await fetch(technicianUrl, fetchConfig);
-    console.log(response)
     if (response.ok) {
       const newTechnician = await response.json();
       window.location.href = 'http://localhost:3000/technicians';

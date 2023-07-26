@@ -71,7 +71,6 @@ export default function AppointmentForm() {
     };
 
     const response = await fetch(appointmentUrl, fetchConfig);
-    console.log(response)
     if (response.ok) {
       const newAppointment = await response.json();
       window.location.href = 'http://localhost:3000/appointments/';
@@ -134,7 +133,6 @@ export default function AppointmentForm() {
             </div>
 
             <div className="mb-3">
-              {/* <div className="form-floating mb-3"> */}
               <select
                 value={technician}
                 onChange={handleTechnicianChange}

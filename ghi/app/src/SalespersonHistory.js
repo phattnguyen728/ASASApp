@@ -6,7 +6,6 @@ export default function SalespersonHistory({ salespeople, sales }) {
 
   const handleChangeSalesperson = (event) => {
     setSalesperson(event.target.value);
-    console.log(salesperson, "salesperson")
   };
 
 
@@ -38,10 +37,7 @@ export default function SalespersonHistory({ salespeople, sales }) {
               </thead>
               <tbody>
               {sales.map(sale => {
-                console.log("sale", sale.salesperson.pk)
-                console.log("person", salesperson)
                 if (String(sale.salesperson.pk) === String(salesperson)) {
-                  console.log("made it")
               return (
                 <tr key={sale.automobile.vin}>
                   <td>{sale.salesperson.first_name} {sale.salesperson.last_name}</td>

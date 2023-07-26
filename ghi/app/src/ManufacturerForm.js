@@ -23,10 +23,8 @@ export default function ManufacturerForm() {
     };
 
     const response = await fetch(manufacturerUrl, fetchConfig);
-    console.log(response)
     if (response.ok) {
       const newManufacturer = await response.json();
-      console.log(newManufacturer)
 
       setName("");
       window.location.href = 'http://localhost:3000/manufacturers/';
@@ -38,7 +36,6 @@ export default function ManufacturerForm() {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Create a new Manufacturer</h1>
-          {/* <form id="create-manufacturer-form"> */}
           <form onSubmit={handleSubmit} id="create-manufacturer-form">
             <div className="form-floating mb-3">
               <input
