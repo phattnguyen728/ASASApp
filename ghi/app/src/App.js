@@ -16,6 +16,7 @@ import CustomerForm from './CustomerForm';
 import CustomerList from './CustomerList';
 import AppointmentsList from './AppointmentsList';
 import AppointmentForm from './AppointmentForm';
+import ServiceHistory from './ServiceHistory';
 import Nav from './Nav';
 import React, { useEffect, useState } from "react";
 
@@ -99,6 +100,7 @@ function App() {
           <Route path="/customers/create" element={<CustomerForm getCustomers={getCustomers} />} />
           <Route path="/appointments" element={<AppointmentsList />} />
           <Route path="/appointments/create" element={<AppointmentForm />} />
+          <Route path="/appointments/history" element={<ServiceHistory />} />
         </Routes>
       </div>
     </BrowserRouter>
