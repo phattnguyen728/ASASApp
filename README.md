@@ -39,14 +39,189 @@ CarCar is made up of 3 microservices which interact with one another.
 ## Diagram
 ![Img](/images/CarCarDiagram.png)
 
-## SERVICE MICROSERVICE
-    Explain your models and integration with the inventory
-    microservice, here.
+## SERVICE MICROSERVICE &&
+
+For the Service microservice we have 3 models: Technician, AutomotbileVO, and Appointment. The Appointment model interacts with the technician and the automobile models. In order to generate an appointment, there has to be an existing technician. When generating a service appointment, it requires a VIN, Customer's information, Date and Time, a technician, and the reason for service. Once generated the VIN will be filters through the microservice poller verifying the VIN from the Inventory through the AutomobileVO value object to verify if the vehicle qualifies for VIP service. Through this microservice we are able to create, update, and keep track of appointments as well as keep track and manage the service history.
+
+##      Service Value Object
+ -      AutomobileVO
+
 
 ##      API Documentation
- -      Put Service API documentation here
-##      Value Objects
- -      Identification of value objects for each service goes here
+##      Access below endpoints through insomnia & your browser
+
+###         Technician
+| Action | Method | URL
+| ----------- | ----------- | ----------- |
+| Create a technician | POST | http://localhost:8080/api/technicians/
+| List technicians | GET | 	http://localhost:8080/api/technicians/
+| Delete a specific technician | DELETE | http://localhost:8080/api/technicians/id/
+
+Create a technician
+```
+{
+  "first_name": "Matthew",
+	"last_name": "Campbell",
+	"employee_id": "mcampbell"
+}
+```
+The return value of creating a technician
+{
+	"first_name": "Matthew",
+	"last_name": "Campbell",
+	"employee_id": "mcampbell",
+	"id": 1
+}
+Getting a list of technicians return value:
+{
+	"technicians": [
+		{
+			"first_name": "Matthew",
+			"last_name": "Campbell",
+			"employee_id": "mcampbell",
+			"id": 1
+		},
+		{
+			"first_name": "Madilyn",
+			"last_name": "Scott",
+			"employee_id": "mscott",
+			"id": 2
+		}
+	]
+}
+Deleting a technician return value if they exist
+{
+	"message": "Technician has been deleted"
+}
+If technician doesn't exist it will return
+404 Not Found
+{
+	"Message": "Technician does not exist"
+}
+
+
+###         Appointment
+| Action | Method | URL
+| ----------- | ----------- | ----------- |
+| Create a appointment | POST | http://localhost:8080/api/appointments/
+| List of appointments | GET | http://localhost:8080/api/appointments/
+| Delete a specific appointment | DELETE | http://localhost:8080/api/appointments/id/
+| Complete a specific appointment | PUT | http://localhost:8080/api/appointments/id/finish
+| Cancel a specific appointment | PUT | http://localhost:8080/api/appointments/id/cancel
+
+JSON body to send data:
+Create a appointment
+```
+{
+    "date_time": "2024-07-24T14:30:00",
+    "reason": "Yearly maintenance",
+    "vin": "1C3CC5FB2AN120174",
+    "customer": "Johnny Bravo",
+    "technician": 1
+}
+```
+The return value of creating a appointment
+{
+	"date_time": "2024-07-24T14:30:00",
+	"reason": "Yearly maintenance",
+	"id": 1,
+	"status": "Created",
+	"vin": "1C3CC5FB2AN120174",
+	"customer": "Johnny Bravo",
+	"is_vip": false,
+	"technician": {
+		"first_name": "Matthew",
+		"last_name": "Campbell",
+		"employee_id": "mcampbell",
+		"id": 1
+	}
+}
+Getting a list of appointment return value:
+{
+	"appointments": [
+		{
+			"date_time": "2024-07-24T14:30:00+00:00",
+			"reason": "Yearly maintenance",
+			"id": 1,
+			"status": "Created",
+			"vin": "1C3CC5FB2AN120174",
+			"customer": "Johnny Bravo",
+			"is_vip": false,
+			"technician": {
+				"first_name": "Matthew",
+				"last_name": "Campbell",
+				"employee_id": "mcampbell",
+				"id": 1
+			}
+		},
+		{
+			"date_time": "2024-07-24T14:30:00+00:00",
+			"reason": "Yearly maintenance",
+			"id": 2,
+			"status": "Created",
+			"vin": "1C3CCAF3E5N120174",
+			"customer": "Bill Joe Bob",
+			"is_vip": false,
+			"technician": {
+				"first_name": "Matthew",
+				"last_name": "Campbell",
+				"employee_id": "mcampbell",
+				"id": 1
+			}
+		}
+	]
+}
+Cancelling an appointment will return the value:
+{
+	"date_time": "2024-07-24T14:30:00+00:00",
+	"reason": "Yearly maintenance",
+	"id": 1,
+	"status": "Cancelled",
+	"vin": "1C3CC5FB2AN120174",
+	"customer": "Joanna McPherson",
+	"is_vip": true,
+	"technician": {
+		"first_name": "Matthew",
+		"last_name": "Campbell",
+		"employee_id": "mcampbell",
+		"id": 1
+	}
+}
+If an appointment can not be cancelled it will return the value:
+404 not found
+{
+	"message": "Could not cancel appointment"
+}
+Completing an appointment will return the value:
+{
+	"date_time": "2024-07-24T14:30:00+00:00",
+	"reason": "Yearly maintenance",
+	"id": 2,
+	"status": "Finished",
+	"vin": "1C3CCAF3E5N120174",
+	"customer": "Bill Joe Bob",
+	"is_vip": false,
+	"technician": {
+		"first_name": "Matthew",
+		"last_name": "Campbell",
+		"employee_id": "mcampbell",
+		"id": 1
+	}
+}
+If an appointment can not be completed it will return the value:
+404 not found
+{
+	"message": "Could not complete appointment"
+}
+Deleting an Appointment return value if they exist
+{
+	"message": "Appointment has been deleted"
+}
+If they don't exist
+it will return a 404 not found
+{
+	"Message": "Appointment does not exist"
+}
 
 ## SALES MICROSERVICE
 
