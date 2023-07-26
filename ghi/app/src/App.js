@@ -10,6 +10,7 @@ import AutomobilesList from './AutomobilesList';
 import AutomobileForm from './AutomobileForm';
 import SalespeopleList from './SalespeopleList';
 import SalespersonForm from './SalespersonForm';
+import SalespersonHistory from './SalespersonHistory';
 import SalesList from './SalesList';
 import SalesForm from './SalesForm';
 import CustomerForm from './CustomerForm';
@@ -94,6 +95,7 @@ function App() {
           <Route path="/automobiles/create" element={<AutomobileForm getAutomobiles={getAutomobiles} />} />
           <Route path="/salespeople" element={<SalespeopleList salespeople={salespeople} />} />
           <Route path="/salespeople/create" element={<SalespersonForm getSalespeople={getSalespeople} />} />
+          <Route path="/salespersonhistory" element={<SalespersonHistory  salespeople={salespeople} sales={sales} />} />
           <Route path="/sales" element={<SalesList sales={sales} />} />
           <Route path="/sales/create" element={<SalesForm automobiles={automobiles} salespeople={salespeople} customers={customers} getSales={getSales} />} />
           <Route path="/customers" element={<CustomerList customers={customers} />} />
