@@ -7,9 +7,10 @@ class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
     sold = models.BooleanField(default=False)
 
+
 class Salesperson(models.Model):
-    first_name =  models.CharField(max_length=200)
-    last_name =  models.CharField(max_length=200)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
     employee_id = models.CharField(max_length=201)
 
     def __str__(self):
@@ -18,7 +19,7 @@ class Salesperson(models.Model):
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=200)
-    last_name =  models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
     address = models.TextField()
     phone_number = models.CharField(max_length=12)
 
@@ -44,5 +45,4 @@ class Sale(models.Model):
         Customer,
         related_name="sale",
         on_delete=models.CASCADE,
-
     )

@@ -15,7 +15,7 @@ class Technician(models.Model):
 
 
 class AutomobileVO(models.Model):
-    href = models.CharField(max_length=200, unique= True)
+    href = models.CharField(max_length=200, unique=True)
     vin = models.CharField(max_length=17, unique=True)
     sold = models.BooleanField(default=False)
 
@@ -31,15 +31,12 @@ class Appointment(models.Model):
     is_vip = models.BooleanField(default=False, null=True, blank=True)
     customer = models.CharField(max_length=100)
     technician = models.ForeignKey(
-        Technician,
-        related_name="appointment",
-        on_delete=models.PROTECT
+        Technician, related_name="appointment", on_delete=models.PROTECT
     )
 
     def is_finished(self):
         self.status = "Finished"
         self.save()
-
 
     def is_cancelled(self):
         self.status = "Cancelled"

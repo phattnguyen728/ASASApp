@@ -8,45 +8,97 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AutomobileVO',
+            name="AutomobileVO",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('vin', models.CharField(max_length=17, unique=True)),
-                ('sold', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("vin", models.CharField(max_length=17, unique=True)),
+                ("sold", models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=200)),
-                ('last_name', models.CharField(max_length=200)),
-                ('address', models.TextField()),
-                ('phone_number', models.CharField(max_length=12)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=200)),
+                ("last_name", models.CharField(max_length=200)),
+                ("address", models.TextField()),
+                ("phone_number", models.CharField(max_length=12)),
             ],
         ),
         migrations.CreateModel(
-            name='Salesperson',
+            name="Salesperson",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=200)),
-                ('last_name', models.CharField(max_length=200)),
-                ('employee_id', models.CharField(max_length=201)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=200)),
+                ("last_name", models.CharField(max_length=200)),
+                ("employee_id", models.CharField(max_length=201)),
             ],
         ),
         migrations.CreateModel(
-            name='Sale',
+            name="Sale",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=8)),
-                ('automobile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sale', to='sales_rest.automobilevo')),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sale', to='sales_rest.customer')),
-                ('salesperson', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sale', to='sales_rest.salesperson')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("price", models.DecimalField(decimal_places=2, max_digits=8)),
+                (
+                    "automobile",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sale",
+                        to="sales_rest.automobilevo",
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sale",
+                        to="sales_rest.customer",
+                    ),
+                ),
+                (
+                    "salesperson",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="sale",
+                        to="sales_rest.salesperson",
+                    ),
+                ),
             ],
         ),
     ]

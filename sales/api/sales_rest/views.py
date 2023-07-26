@@ -6,26 +6,36 @@ import requests
 from common.json import ModelEncoder
 from .models import Salesperson, Customer, AutomobileVO, Sale
 
+
 class AutomobileVOEncoder(ModelEncoder):
-    model =  AutomobileVO
+    model = AutomobileVO
     properties = ["vin", "sold"]
+
 
 class SalespersonEncoder(ModelEncoder):
     model = Salesperson
-    properties = ["first_name","last_name", "employee_id","pk"]
+    properties = ["first_name", "last_name", "employee_id", "pk"]
+
 
 class CustomerEncoder(ModelEncoder):
     model = Customer
-    properties = ["first_name","last_name", "phone_number", "address","pk"]
+    properties = ["first_name", "last_name", "phone_number", "address", "pk"]
+
 
 class SaleEncoder(ModelEncoder):
     model = Sale
-    properties = ["price","automobile","salesperson","customer",]
+    properties = [
+        "price",
+        "automobile",
+        "salesperson",
+        "customer",
+    ]
     encoders = {
         "automobile": AutomobileVOEncoder(),
         "salesperson": SalespersonEncoder(),
         "customer": CustomerEncoder(),
     }
+
 
 # list salespeople and create salesperson
 @require_http_methods(["GET", "POST"])
@@ -33,9 +43,9 @@ def api_list_salespeople(request):
     if request.method == "GET":
         salespeople = Salesperson.objects.all()
         return JsonResponse(
-                {"salespeople": salespeople},
-                encoder=SalespersonEncoder,
-            )
+            {"salespeople": salespeople},
+            encoder=SalespersonEncoder,
+        )
     else:
         content = json.loads(request.body)
         salesperson = Salesperson.objects.create(**content)
@@ -46,18 +56,13 @@ def api_list_salespeople(request):
         )
 
 
-
 # delete salesperson
 @require_http_methods(["DELETE"])
-def api_delete_salesperson(request,pk):
+def api_delete_salesperson(request, pk):
     try:
         salesperson = Salesperson.objects.get(id=pk)
         salesperson.delete()
-        return JsonResponse(
-            salesperson,
-            encoder=SalespersonEncoder,
-            safe=False
-        )
+        return JsonResponse(salesperson, encoder=SalespersonEncoder, safe=False)
     except Salesperson.DoesNotExist:
         raise Http404("Salesperson does not exist")
 
@@ -68,10 +73,10 @@ def api_list_customers(request):
     if request.method == "GET":
         customers = Customer.objects.all()
         return JsonResponse(
-                {"customers": customers},
-                encoder=CustomerEncoder,
-                safe=False,
-            )
+            {"customers": customers},
+            encoder=CustomerEncoder,
+            safe=False,
+        )
     else:
         content = json.loads(request.body)
         customer = Customer.objects.create(**content)
@@ -81,9 +86,10 @@ def api_list_customers(request):
             safe=False,
         )
 
+
 # delete customer
 @require_http_methods(["DELETE"])
-def api_delete_customer(request,pk):
+def api_delete_customer(request, pk):
     try:
         customer = Customer.objects.get(id=pk)
         customer.delete()
@@ -95,16 +101,17 @@ def api_delete_customer(request,pk):
     except Customer.DoesNotExist:
         raise Http404("Customer does not exist")
 
+
 # list sales and create a sale
 @require_http_methods(["GET", "POST"])
 def api_list_sales(request):
     if request.method == "GET":
         sales = Sale.objects.all()
         return JsonResponse(
-                {"sales": sales},
-                encoder=SaleEncoder,
-                safe=False,
-            )
+            {"sales": sales},
+            encoder=SaleEncoder,
+            safe=False,
+        )
     else:
         content = json.loads(request.body)
 
@@ -138,12 +145,14 @@ def api_list_sales(request):
         autoVO.sold = True
         autoVO.save()
 
-        #update Automobile to sold
-        json_data = json.dumps({"sold":True})
-        AutoUrl = f'http://project-beta-inventory-api-1:8000/api/automobiles/{auto_vin}/'
-        response = requests.put(AutoUrl,
-                                data=json_data,
-                                headers={'Content-Type': 'application/json'})
+        # update Automobile to sold
+        json_data = json.dumps({"sold": True})
+        AutoUrl = (
+            f"http://project-beta-inventory-api-1:8000/api/automobiles/{auto_vin}/"
+        )
+        response = requests.put(
+            AutoUrl, data=json_data, headers={"Content-Type": "application/json"}
+        )
         if response.status_code != 200:
             print("auto request failed", response.status_code)
 
@@ -153,9 +162,10 @@ def api_list_sales(request):
             safe=False,
         )
 
+
 # delete a sale
 @require_http_methods(["DELETE"])
-def api_delete_sale(request,pk):
+def api_delete_sale(request, pk):
     try:
         sale = Sale.objects.get(id=pk)
         sale.delete()
