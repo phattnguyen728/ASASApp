@@ -72,7 +72,6 @@ export default function AppointmentForm() {
 
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
-      const newAppointment = await response.json();
       window.location.href = 'http://localhost:3000/appointments/';
 
 

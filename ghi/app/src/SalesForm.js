@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import SalesList from "./SalesList";
+import React, { useState } from "react";
 
 export default function SaleForm({automobiles, salespeople, customers, getSales}) {
     const [price, setPrice] = useState('');

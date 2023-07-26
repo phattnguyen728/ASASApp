@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 export default function ManufacturerForm() {
   const [name, setName] = useState("");
 
@@ -24,8 +24,6 @@ export default function ManufacturerForm() {
 
     const response = await fetch(manufacturerUrl, fetchConfig);
     if (response.ok) {
-      const newManufacturer = await response.json();
-
       setName("");
       window.location.href = 'http://localhost:3000/manufacturers/';
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function TechnicianForm() {
   const [firstName, setFirstName] = useState("");
@@ -39,7 +39,6 @@ export default function TechnicianForm() {
 
     const response = await fetch(technicianUrl, fetchConfig);
     if (response.ok) {
-      const newTechnician = await response.json();
       window.location.href = 'http://localhost:3000/technicians';
 
       setEmployeeId("");
