@@ -1,4 +1,4 @@
-# CarCar
+# Automotive Sales and Services Web App
 
 Team:
 
@@ -30,7 +30,7 @@ Look in below folder for screenshot of website
 
 
 ## Design
-CarCar is made up of 3 microservices which interact with one another.
+Automotive Sales and Services Web App is made up of 3 microservices which interact with one another.
 
 - **Inventory**
 - **Services**
